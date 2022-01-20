@@ -1,111 +1,81 @@
-# Spring Framework
+<h1>Warehouse Managment System (WMS) </h1>
 
-## Topics covered
+<h2> <em> Main goal </em></h2> 
 
-Inversion of Control, Dependency Injection, Beans, Annotation configuration, Spring Starter, REST API.
+<p> The goal of this project is to create a fully functional prototype web application for a <strong> Warehouse Management System </strong> (<em>"a software application designed to support and optimize warehouse functionality and distribution center management"</em>). This website will help to keep track of where the stock of the company is and will also let the users of the system move the stock around by placing orders. It will keep track of every item, their quantity and location, who ordered which item and so on. 
+</p>
+<p> Additionally, i will learn how to create a custom dynamic web application that stores the information in a database, has a user system and let's registered users interact with the contents of the database with web forms, making persistent changes on the website content.
+</p>
 
-## Goal achieved
+<p> Further, i will be given small incremental goals that i can reach with the knowledge acquired at every step of the learning experience, ending up with a complete road map that will guide me on my way to completing my first web application.</p>
 
-You'll start with the first step towards converting your command line query tool to a web-based warehouse management system using the Spring framework. By the end of this exercise you will have a basic spring boot project with some REST endpoints exposed for warehouse and user data that we'll later use to develop our web-based warehouse management system.
-Specifically you'll have the following goals achieved :
+<hr> 
 
-- Spring boot application with standard project structure.
-- well segregated controller, service and repository layers.
-- Endpoints exposed for various warehouse and user related data.
-- Testing these endpoints with postman.
+<h2> <em> Features </em> </h2>
 
-## Preparation
+<h3> <em> Implemented features </em></h3>
 
-Use [Spring Initializer](https://start.spring.io/) to initialize a new Spring boot application.
+ <ol> 
+   <li> Set up a repository using GitHub </li>
+   <li> Created a README.md </li>
+   <li> Created a License file</li>
+</ol>
 
-- Select Maven Project, Language- Java, latest stable Spring Boot version.
-- Give Group, Artifact, Name , Description, package name to the project.
-- Select Jar as packaging and LTE version of Java.
-- Add Spring web dependency from here. Later we'll add dependencies as per requirement in the pom.xml file.
-- Generate the zip file, extract it and import the project to your IDE.
+<h3> Expected features</h3>
 
-## Data
+  <ul>
+   <li> A user system with roles and permissions for listing and placing orders. </li>
+   <li> Maintain the stock of a warehouse.</li>
+   <li> Order items from the warehouse.</li>
+   <li> Log actions from users. </li>
+   <li> Reporting. </li>
+ </ul>
+ 
+ <hr>
+<h2> <em> License </em> </h2>
 
-The data required by the spring boot application are provided in json files inside the sample/data directory. Copy the `data` directory as it is into the root directory of your spring boot project(i.e where the src folder is present). You'll specifically be needing `stock.json` and `personnel.json` inside the data directory.
+<p> GNU General Public License v3.0 - Please click <a href= "https://choosealicense.com/licenses/gpl-3.0/" target= "_blank" > here </a> </p>
 
+<h2> Devolpment steps </h2>
 
-## Description
+Step 1: Open Terminal and install IntelliJ IDE through the Homebrew command:
+		brew install --cask intellij-idea-ce
 
-#### Import classes from our previous command line query tool project to our spring boot application
-<br>
-Create a new package `model` and copy our models inside this package: Admin, Employee, Guest, Item, Order, OrderItem, User.
-<br><br>
-Create a new package `repository` and copy our Repository classes inside this package : WarehouseRepository, UserRepository
-<br><br>
+Step 2: Open IntelliJ IDE.
 
-Also you need to add the json-simple dependency to your `pom.xml` to resolve dependencies of the Repository classes.
+Step 3: Download and install a JDK
+	
+Step 4: Continue without selecting a template.
 
-```
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-```
-Perform the needed refactoring to make the codes error-free.
+Step 5: Assign a name and address to the project.
 
+Step 6: Through the Terminal, create a local git repo and connect it to the remote  Github repo.
+		Pull the remote repo to download all the current files and be updated.
 
-#### Add the service layer and controller layer for Warehouse related functionalities
+Step 7: Through the Terminal, create folders with the command:
+		
+		mkdir -p src/{main,test}/{java,resources}
 
-###### Service Layer
-Create a new package `service` and create a new Service class WarehouseService inside this package. Annotate this class with @Service annotation as later we'll need to use this service class in our Controller.
-<br><br>
-You'll be delegating the functionalities from your WarehouseRespository class to this class as to have a separate service layer and later we follow the practice of writing business logics in the service layer only.
-<br><br>
-As the methods we'll be needing from the Repository class are already static, we'll not be needing dependency injection for the WarehouseRepository class into the service class. Otherwise if we want to use non-static methods from the Repository class, we would annotate the Repository class with @Repository annotation and then we would be able to inject the class as the dependency.
-<br><br>
-Create five new methods to `get warehouse`, `get all the items`, `get items by warehouse`, `get categories` and `get items by category` in this service class and simply call the appropriate static methods from the WarehouseRepository class.
+Step 8: Inside IntelliJ, select the "java" folder inside the "main" folder.
 
-###### Controller Layer
+Step 9: Go to File and create a new Java Class, and name it "main".
 
-Create a new package `controller` and create a new Controller class WarehouseController inside this package. Annotate this class with @RestController as we'll be exposing rest endpoints through this class.
-<br><br>
-You'll need to add dependency injection for the WarehouseService class as we'll be using methods from this class to serve requests to our `REST` endpoints.
-<br><br>
-Specifically, create the following endpoints related to warehouse :
+Step 10: Inside the "main" Java Class create the Hello World app with the next code:
+		
+		public class main {
+    			public static void main(String[] args){
+        				System.out.println("Hello World !!!");
+    				}
+		}
 
-			- GET -> /warehouse/getWarehouses  -> returns Set<Integer>
-			- GET -> /warehouse/getAllItems    -> returns List<Item>
-			- GET -> /warehouse/getAllItems/{warehouseId} -> returns List<Item>
-			- GET -> /warehouse/getCategories  -> returns Set<String>
-			- GET -> /warehouse/getItemsByCategory/{category}  -> returns List<Item>
-
-
-#### Add the service layer and controller layer for User related functionalities
-
-###### Service Layer
-Inside the  `service` package, create a new Service class UserService. Annotate this class with @Service annotation as later we'll need to use this service class in our Controller.
-<br><br>
-You'll be delegating the functionalities from your UserRespository class to this class.
-<br><br>
-As the methods we'll be needing from the Repository class are already static, we'll not be needing dependency injection for the UserRepository class into the service class.
-<br><br>
-Create four new methods to `get all the employees`, `get all the admins`, `if employee credential is correct` and `if admin credential is correct` in this service class and simply call the appropriate static methods from the UserRepository class.
-
-###### Controller Layer
-
-Create a new Controller class WarehouseController inside the `controller` package. Annotate this class with @RestController as we'll be exposing rest endpoints through this class.
-<br><br>
-You'll need to add dependency injection for the UserService class as we'll be using methods from this class to serve requests to our `REST` endpoints.
-<br><br>
-Specifically, create the following endpoints related to users :
-
-			- GET -> /users/getAllEmployees  -> returns List<Employee>
-			- GET -> /users/getAllAdmins    -> returns List<Admin>
-
-Copy the LoginDTO model provided in the `sample/` directory inside the `model` package and use it as Request body for the following two endpoints :
-
-			- GET -> /users/employee/login -> takes LoginDTO in RequestBody -> returns boolean
-			- GET -> /users/admin/login  -> takes LoginDTO in RequestBody  -> returns boolean
-			(return true if credentials match, otherwise false)
+Step 11: Commit the changes and push them to the remote repo.
 
 
 
-#### Test all the endpoints using Postman.
+<hr>
+<strong> <em> <h2> Contact details </h2> </em> </strong>
 
-Start the spring boot application and Test all the endpoints created using postman. For your convenience you can import this [collection](https://www.getpostman.com/collections/a15466413f56f26b6628) into postman and test the endpoints.
+   <p> - Lucila Kalbermatter - <em> Delivery Hero Tech Academy </em> </p>
+   <p> - Github profile: https://github.com/lucilakalbermatter </p>
+
+
